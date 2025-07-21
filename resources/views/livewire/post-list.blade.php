@@ -1,10 +1,10 @@
 <div class=" px-3 lg:px-7 py-6">
     <div class="flex justify-between items-center border-b border-gray-100">
-        <div class="text-gray-600 border border-slate-700 p-2 rounded">
-            @if ($search)
+        @if ($search)
+            <div class="text-gray-600 border border-slate-700 p-2 rounded">
                 Searching: {{ $search }}
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="flex items-center space-x-4 font-light ">
             <button wire:click='setSort("desc")'
                 class="{{ $sort === 'desc' ? 'text-gray-900 border-b border-gray-700' : 'text-gray-500' }} py-4">Latest</button>
