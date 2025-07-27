@@ -33,7 +33,7 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->afterStateUpdated(function (string $operation, $state, Set $set) {
-                        if ($operation !== 'edit') {
+                        if ($operation === 'edit') {
                             return;
                         }
                         $set('slug', Str::slug($state));

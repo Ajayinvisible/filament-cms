@@ -7,6 +7,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,16 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'published_at',
+        'featured',
+        'user_id',
+        'thumbnail',
+    ];
 
     public function scopePublished(Builder $query)
     {
@@ -29,6 +40,11 @@ class Post extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
     }
 
     protected function casts(): array
